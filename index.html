@@ -8,30 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Merienda|Raleway" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <script src="assets/javascript/game.js"></script>
 </head>
 
 <body onload="newGame()">
     <div class="container">
-    <h1>Hangman: Guess the Dog Breed</h1>
-    <h2>Press any key to get started!</h2>
-    <p> Wins:
-        <span id="showWins">
-        </span>
-    </p>
-    <p>Current word: </p>
-    <p>
-        <span id="currentWord"></span>
-    </p>
-    <p> Number of guesses remaining:
-        <span id="remainingTries"></span>
-    </p>
-    <p>Letters already guessed: </p>
-    <p>
-        <span id="letters"></span>
-    </p>
-</div>
+        <div class="row"></div>
+        <div class="col-md-6 offset-md-3" id="mainBody">
+            <h1>Hangman: Guess the Dog Breed</h1>
+            <h2>Press any key to get started!</h2>
+            <br>
+            <p> Wins:
+                <span id="showWins">
+                </span>
+            </p>
+            <div id="wordGuess">
+            <p>Current word: </p>
+            <p>
+                <span id="currentWord"></span>
+            </p>
+        </div>
+            <p> Number of guesses remaining:
+                <span id="remainingTries"></span>
+            </p>
+            <p>Letters already guessed: </p>
+            <p>
+                <span id="letters"></span>
+            </p>
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>

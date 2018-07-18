@@ -2,7 +2,32 @@ body {
     background-image: url("../../assets/images/dog\ background.png");
     text-align: center;
 }
+
 .container {
-    margin: auto;
+    min-height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
+#mainBody {
+    border: 1px dashed rgb(201, 199, 199);
+    padding:0;
+   
+}
+
+h1 {
+    font-family: 'Merienda', cursive;
+    background-color: rgb(139, 217, 253);
+    width: 100%;
+}
+h2 {
+    font-family: 'Raleway', sans-serif;
+}
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+#wordGuess{
+    font-size: 30px;
+}

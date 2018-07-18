@@ -46,7 +46,7 @@ function winAlert () {
     console.log (randomWord);
     wins++;
     document.getElementById("showWins").innerHTML = wins;
-    alert("You are correct! The answer is '" + randomWord + "'. Click ok to play again.");
+    alert("You win! The answer is '" + randomWord + "'. Click ok to play again.");
 }
 
 // This function is run whenever the user presses a key.
