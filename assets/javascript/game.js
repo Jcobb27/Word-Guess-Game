@@ -44,32 +44,40 @@ document.onkeyup = function (event) {
 
     //determines which key was pressed
     var userGuess = event.key;
-    //Concats letters guessed and writes them in html
-    lettersGuessed = lettersGuessed.concat(" " + userGuess);
-    document.getElementById("letters").innerHTML = lettersGuessed;
+
+    var foundMatch = false;
 
     //for loop checks if user guess = a letter in the word
     for (var i = 0; i < randomWord.length; i++) {
         if (randomWord[i] === userGuess) {
             userGuessArr[i] = userGuess;
-            //increase count for win determination
             count++;
             document.getElementById("currentWord").innerHTML = userGuessArr.join(" ");
+            foundMatch = true;
         }
     }
-
-    //decrease count for number of tries remaining
-    tries--;
-    document.getElementById("remainingTries").innerHTML = tries;
+    //if match was not found and userGuess is not a repeat
+    if (!foundMatch && !lettersGuessed.includes(userGuess)) {
+        //decrease count for number of tries remaining
+        tries--;
+        document.getElementById("remainingTries").innerHTML = tries;
+        //Concats letters guessed and writes them in html
+        lettersGuessed = lettersGuessed.concat(" " + userGuess);
+        document.getElementById("letters").innerHTML = lettersGuessed;
+    }
 
     //check for win
-    if (count == randomWord.length) {
+    if (!userGuessArr.includes("_")){
         wins++;
         document.getElementById("showWins").innerHTML = wins;
+        document.getElementById("currentWord").innerHTML = randomWord;
+        alert("You win!! Click ok to play again.")
         newGame();
     }
+
     //reset game if remainining tries = 0
     if (tries == 0) {
+        alert ("You've used all your guesses. Please try again.")
         newGame();
     }
 }
