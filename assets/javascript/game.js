@@ -11,6 +11,7 @@ var s;
 var randomWord;
 var count = 0;
 var lettersGuessed = "";
+//var alphabetArr = ["a", "b", "c", "d", "e"];
 
 //Make empty array to store user guesses
 var userGuessArr = [];
@@ -39,19 +40,29 @@ function newGame() {
     document.getElementById("currentWord").innerHTML = s;
 }
 
+//function that runs when the user wins, includes win alert and increases score
+function winAlert () {
+    document.getElementById("currentWord").innerHTML = randomWord;
+    console.log (randomWord);
+    wins++;
+    document.getElementById("showWins").innerHTML = wins;
+    alert("You are correct! The answer is '" + randomWord + "'. Click ok to play again.");
+}
+
 // This function is run whenever the user presses a key.
 document.onkeyup = function (event) {
 
     //determines which key was pressed
-    var userGuess = event.key;
-
+    var userGuess = event.key.toLowerCase();
+    var keyCode = event.keyCode;
     var foundMatch = false;
+
+    if (keyCode >64 && keyCode<91) {
 
     //for loop checks if user guess = a letter in the word
     for (var i = 0; i < randomWord.length; i++) {
         if (randomWord[i] === userGuess) {
             userGuessArr[i] = userGuess;
-            count++;
             document.getElementById("currentWord").innerHTML = userGuessArr.join(" ");
             foundMatch = true;
         }
@@ -68,10 +79,7 @@ document.onkeyup = function (event) {
 
     //check for win
     if (!userGuessArr.includes("_")){
-        wins++;
-        document.getElementById("showWins").innerHTML = wins;
-        document.getElementById("currentWord").innerHTML = randomWord;
-        alert("You win!! Click ok to play again.")
+        winAlert();
         newGame();
     }
 
@@ -81,6 +89,6 @@ document.onkeyup = function (event) {
         newGame();
     }
 }
-
+}
 
 
