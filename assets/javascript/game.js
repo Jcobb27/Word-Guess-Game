@@ -6,8 +6,11 @@ var wordBank = ["chihuahua", "beagle", "dalmation", "dachshund", "bulldog", "blo
 var wins = 0;
 //create tries variable, set to 12
 var tries = 12;
-//create string variable
+//create global variables
 var s;
+var randomWord;
+var count = 0;
+var lettersGuessed = "";
 
 //Make empty array to store user guesses
 var userGuessArr = [];
@@ -15,13 +18,20 @@ var userGuessArr = [];
 //new game function
 function newGame() {
     //Choose a random word
-    var randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+    randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+    //reset variables
+    userGuessArr = [];
+    count = 0;
+    lettersGuessed = "";
+    document.getElementById("letters").innerHTML = lettersGuessed;
+    tries = 12;
+    document.getElementById("remainingTries").innerHTML = tries;
     //Log random word as test
     console.log(randomWord);
     //reset
     document.getElementById("currentWord").innerHTML = "";
     //filling in dashes for length of random word
-    for (var i = 0; i <= randomWord.length; i++) {
+    for (var i = 0; i < randomWord.length; i++) {
         userGuessArr[i] = "_";
     }
     s = userGuessArr.join(" ");
@@ -29,29 +39,40 @@ function newGame() {
     document.getElementById("currentWord").innerHTML = s;
 }
 
+// This function is run whenever the user presses a key.
+document.onkeyup = function (event) {
+
+    //determines which key was pressed
+    var userGuess = event.key;
+    //Concats letters guessed and writes them in html
+    lettersGuessed = lettersGuessed.concat(" " + userGuess);
+    document.getElementById("letters").innerHTML = lettersGuessed;
+
+    //for loop checks if user guess = a letter in the word
+    for (var i = 0; i < randomWord.length; i++) {
+        if (randomWord[i] === userGuess) {
+            userGuessArr[i] = userGuess;
+            //increase count for win determination
+            count++;
+            document.getElementById("currentWord").innerHTML = userGuessArr.join(" ");
+        }
+    }
+
+    //decrease count for number of tries remaining
+    tries--;
+    document.getElementById("remainingTries").innerHTML = tries;
+
+    //check for win
+    if (count == randomWord.length) {
+        wins++;
+        document.getElementById("showWins").innerHTML = wins;
+        newGame();
+    }
+    //reset game if remainining tries = 0
+    if (tries == 0) {
+        newGame();
+    }
+}
 
 
-
-
-
-// // This function is run whenever the user presses a key.
-// document.onkeyup = function (letter) {
-
-//     //determines which key was pressed
-//     var userGuess = event.key;
-
-//     //store user guess in array
-//     userGuessArr.push(userGuess);
-
-//     //show userGuessArr in id="letters"
-//     var letters = document.getElementById("letters");
-//     document.querySelector("#letters").innerHTML = userGuessArr;
-
-
-
-//     //Subtract from remainingTries and show in HTML
-//     var remainingTries = (tries - 1);
-//     var remT = document.getElementById("remainingTries");
-//     document.querySelector("#remainingTries").innerHTML = remainingTries;
-// }
 
